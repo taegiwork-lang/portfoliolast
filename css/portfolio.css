@@ -1,0 +1,434 @@
+/* ============================================================
+   포트폴리오 CSS 최종본
+   - 모든 섹션 배경은 data-bg 속성을 JS에서 적용
+   - 반응형 웹/태블릿/모바일 대응
+   - 각 영역, 버튼, 캐러셀, 모달, 파동 캔버스 등 모두 스타일링
+============================================================ */
+
+/* ================== 1) CSS 변수 ================== */
+:root {
+  --header-height: 150px; /* 헤더 높이 */
+  --accent: #ff8a00; /* 주황 강조 색상 */
+  --glass-border: rgba(255, 255, 255, 0.2); /* 반투명 카드 테두리 */
+  --card-w: 260px; /* 카드 기본 너비 */
+  --card-h: 180px; /* 카드 기본 높이 */
+  --gutter: 18px; /* 캐러셀 카드 간격 */
+  /* --font-main: "Noto Sans KR", sans-serif; */
+  /* 기본 폰트 */
+}
+@font-face {
+  font-family: "OngleipParkDahyeon";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2411-3@1.0/Ownglyph_ParkDaHyun.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-display: swap;
+}
+/* ================== 2) 기본 초기화 ================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  font-family: "OngleipParkDahyeon", sans-serif; /* 이제 적용됨 */
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  background: #fff; /* 섹션에서 배경 이미지 적용 */
+  cursor: url("/image/momomo.png"), auto; /* 마우스 커서 변경 */
+}
+
+/* ================== 3) 인트로 영상 ================== */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 4000;
+  transition: opacity 0.5s ease;
+}
+.intro-overlay video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+.skip-btn {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  z-index: 4010;
+  font-size: 68px;
+}
+
+/* ================== 4) 캔버스 파동 ================== */
+#rippleCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* 마우스 이벤트 무시 */
+  z-index: 3500;
+}
+
+/* ================== 5) 헤더 ================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1920px, 100%);
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  z-index: 3000;
+  background: transparent;
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+}
+.header-inner {
+  width: 100%;
+  padding: 0 40px;
+  display: flex;
+  /* justify-content: space-between; */
+  justify-content: center;
+  align-items: center;
+}
+/* .logo { */
+/* font-size: 28px; */
+/* letter-spacing: 2px; */
+/* } */
+.main-nav ul {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.main-nav a {
+  text-decoration: none;
+  font-size: 52px;
+  color: #111;
+  padding: 8px;
+}
+
+/* ================== 6) 섹션 공통 ================== */
+.panel {
+  padding-top: calc(var(--header-height) + 20px);
+  min-height: calc(100vh - 20px);
+  padding-bottom: 60px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  z-index: 1;
+}
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.15);
+  pointer-events: none; /* 텍스트 가독성을 위해 어두운 오버레이 */
+}
+
+/* ================== 7) 중앙 컨테이너 ================== */
+.container {
+  width: min(1200px, 94%);
+  margin: 0 auto;
+}
+
+/* ================== 8) HOME 텍스트 박스 ================== */
+.text-box {
+  width: 1300px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  margin-top: 80px;
+  border-radius: 12px;
+  border: 2px solid var(--accent);
+  background: transparent;
+}
+.text-box h1 {
+  font-size: 64px;
+  letter-spacing: 2px;
+  color: #444;
+}
+.text-box h2 {
+  font-size: 36px;
+  font-weight: 400;
+  color: #555;
+}
+
+/* ================== 9) ProFile 카드 ================== */
+.profile-grid {
+  display: flex;
+  gap: 28px;
+  margin-top: 28px;
+}
+.profile-grid h3 {
+  font-size: 40px;
+  color: #444;
+}
+.profile-grid p {
+  font-size: 32px;
+  color: #555;
+}
+.profile-card {
+  height: 800px;
+  margin-top: 50px;
+  flex: 1;
+  padding: 24px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 2px solid #ff8a00; /* 테두리 설정 */
+}
+
+/* ================== 10) Project 캐러셀 ================== */
+.project-container {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  margin-top: 10px;
+}
+.row-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.row-header h3 {
+  color: #333;
+  font-size: 32px;
+}
+.badge {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border: 3px solid var(--accent);
+  color: var(--accent);
+  background: transparent;
+  font-size: 32px;
+}
+
+.carousel-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+.carousel-window {
+  overflow: hidden;
+  flex: 1;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.03);
+}
+.carousel-track {
+  display: flex;
+  gap: var(--gutter);
+  align-items: center;
+  padding: 14px;
+  will-change: transform;
+}
+.card {
+  min-width: var(--card-w);
+  height: var(--card-h);
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.carousel-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+/* ================== 11) 모달 ================== */
+.media-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  background: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  justify-content: center;
+}
+.media-modal.show {
+  display: flex;
+}
+.modal-inner {
+  width: 92%;
+  max-width: 1400px;
+  position: relative;
+}
+.modal-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  cursor: pointer;
+  font-size: 18px;
+}
+.open-external {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #111;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 52px;
+}
+.modal-content img,
+.modal-content video {
+  width: 100%;
+  max-height: 80vh;
+  border-radius: 8px;
+  display: block;
+}
+
+/* ================== 12) Top 버튼 ================== */
+#topBtn {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.95);
+  text-decoration: none;
+  color: #111;
+  font-size: 28px;
+  z-index: 4000;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+#topBtn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* footer */
+.footer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  margin: 30px;
+}
+.footer-left {
+  width: 750px;
+  height: 900px;
+  border: 2px solid #ff8a00; /* 테두리 설정 */
+  background: none; /* 배경 제거 */
+  padding: 20px; /* 내부 여백 */
+  margin: 30px;
+}
+.footer-left h4 {
+  margin-top: 50px;
+  font-size: 40px;
+  color: #444;
+}
+.footer-left p {
+  margin-top: 60px;
+  font-size: 32px;
+  color: #555;
+}
+.footer-right {
+  width: 750px;
+  height: 900px;
+  border: 2px solid #ff8a00; /* 테두리 설정 */
+  background: none; /* 배경 제거 */
+  padding: 20px; /* 내부 여백 */
+  margin: 30px;
+}
+.footer-right h4 {
+  margin-top: 60px;
+  font-size: 32px;
+  font-size: 40px;
+  color: #444;
+}
+.footer-right ul {
+  font-size: 32px;
+  color: #555;
+  padding: 40px;
+  margin: 30px;
+}
+
+/* ================== 13) 반응형 ================== */
+@media (max-width: 1000px) {
+  :root {
+    --card-w: 200px;
+    --card-h: 140px;
+  }
+  .text-box h1 {
+    font-size: 36px;
+  }
+  .text-box h2 {
+    font-size: 20px;
+  }
+  .site-header {
+    height: 100px;
+  }
+}
+@media (max-width: 640px) {
+  :root {
+    --card-w: 160px;
+    --card-h: 120px;
+    --gutter: 12px;
+  }
+  .main-nav ul {
+    gap: 14px;
+    font-size: 16px;
+  }
+  .badge {
+    width: 44px;
+    height: 44px;
+  }
+}
