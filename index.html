@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>태기 포트폴리오 최종</title>
+
+    <!-- CSS 연결 -->
+    <link rel="stylesheet" href="css/portfolio.css" />
+  </head>
+  <body>
+    <!-- ====================== 1) 인트로 영상 ====================== -->
+    <!-- 페이지 진입 시 전체 화면으로 재생되는 영상 영역 -->
+    <div id="intro" class="intro-overlay" aria-hidden="false">
+      <!-- 자동 재생되는 인트로 영상 -->
+      <video id="introVideo" autoplay muted playsinline>
+        <source src="video/Intro.webm" type="video/webm" />
+      </video>
+      <!-- 우측 하단 스킵 버튼 -->
+      <button id="skipBtn" class="skip-btn" aria-label="인트로 건너뛰기">
+        SKIP
+      </button>
+    </div>
+
+    <!-- ====================== 2) 캔버스 파동 ====================== -->
+    <!-- 마우스 위치를 따라다니며 물방울처럼 퍼지는 파동을 표현 -->
+    <canvas id="rippleCanvas" aria-hidden="true"></canvas>
+
+    <!-- ====================== 3) 헤더 ====================== -->
+    <!-- 페이지 상단 고정 헤더, 로고와 네비게이션 포함 -->
+    <header class="site-header" role="banner">
+      <div class="header-inner">
+        <!-- 로고 영역 -->
+        <!-- <div class="logo"></div> -->
+
+        <!-- 주요 섹션 네비게이션 -->
+        <nav class="main-nav" role="navigation" aria-label="주요 섹션">
+          <ul>
+            <li><a class="nav-link" href="#home">HOME</a></li>
+            <li><a class="nav-link" href="#profile">PROFILE</a></li>
+            <li><a class="nav-link" href="#project">PROJECT</a></li>
+            <li><a class="nav-link" href="#footer">CONTACT</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ====================== 4) 메인 섹션 ====================== -->
+    <main>
+      <!-- HOME 섹션 -->
+      <!-- data-bg 속성에 배경 이미지 경로를 넣으면 JS가 자동 적용 -->
+      <section
+        id="home"
+        class="panel"
+        data-bg="image/111.png"
+        aria-label="HOME 영역"
+      >
+        <div class="container">
+          <!-- 중앙 텍스트 박스 -->
+          <div class="text-box">
+            <h1>Lorem ipsum dolor sit.</h1>
+            <h2>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam
+              sit accusamus earum quisquam, quis qui quasi consectetur
+              necessitatibus inventore quaerat. Enim sint nam in cum adipisci
+              incidunt necessitatibus qui ut. Lorem ipsum dolor sit, amet
+              consectetur adipisicing elit. Magnam sit accusamus earum quisquam,
+              quis qui quasi consectetur necessitatibus inventore quaerat. Enim
+              sint nam in cum adipisci incidunt necessitatibus qui ut. Lorem
+              ipsum dolor sit, amet consectetur adipisicing elit. Magnam sit
+              accusamus earum quisquam, quis qui quasi consectetur
+              necessitatibus inventore quaerat. Enim sint nam in cum adipisci
+              incidunt necessitatibus qui ut. Lorem ipsum dolor sit, amet
+              consectetur adipisicing elit. Magnam sit accusamus earum quisquam,
+              quis qui quasi consectetur necessitatibus inventore quaerat. Enim
+              sint nam in cum adipisci incidunt necessitatibus qui ut. Lorem
+              ipsum dolor sit, amet consectetur adipisicing elit. Magnam sit
+              accusamus earum quisquam, quis qui quasi consectetur
+              necessitatibus inventore quaerat. Enim sint nam in cum adipisci
+              incidunt necessitatibus qui ut. Lorem ipsum dolor sit, amet
+              consectetur adipisicing elit. Magnam sit accusamus earum quisquam,
+              quis qui quasi consectetur necessitatibus inventore quaerat. Enim
+              sint nam in cum adipisci incidunt necessitatibus qui ut.
+            </h2>
+          </div>
+        </div>
+      </section>
+
+      <!-- ProFile 섹션 -->
+      <section
+        id="profile"
+        class="panel"
+        data-bg="image/222.png"
+        aria-label="ProFile 영역"
+      >
+        <div class="container profile-grid">
+          <!-- 자기소개 카드 -->
+          <div class="profile-card">
+            <h3>자기소개</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Reiciendis corporis exercitationem quis aliquid libero temporibus
+              mollitia pariatur, distinctio ratione vitae accusantium ea,
+              repellendus quasi officia impedit error deserunt quos eum! Lorem
+              ipsum dolor sit, amet consectetur adipisicing elit. Magnam sit
+              accusamus earum quisquam, quis qui quasi consectetur
+            </p>
+          </div>
+          <!-- 프로그램/기술 카드 -->
+          <div class="profile-card">
+            <h3>프로그램 / 기술</h3>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam
+              sit accusamus earum quisquam, quis qui quasi consectetur
+              necessitatibus inventore quaerat. Enim sint nam in cum adipisci
+              incidunt necessitatibus qui ut. Lorem ipsum dolor sit, amet
+              consectetur adipisicing elit. Magnam sit accusamus earum quisquam,
+              quis qui quasi consectetur necessitatibus inventore quaerat. Enim
+              sint nam in cum adipisci incidunt necessitatibus qui ut.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ProJect 섹션 -->
+      <section
+        id="project"
+        class="panel"
+        data-bg="image/333.png"
+        aria-label="Project 영역"
+      >
+        <div class="container project-container">
+          <!-- ROW 1: 영상 -->
+          <div class="project-row">
+            <!-- 각 행 헤더: 배지 + 제목 -->
+            <div class="row-header">
+              <div class="badge">영상</div>
+              <h3>영상 클립</h3>
+            </div>
+
+            <!-- 캐러셀 영역 -->
+            <div class="carousel-row" data-speed="0.6" aria-label="영상 캐러셀">
+              <!-- 좌측 이동 버튼 -->
+              <button class="carousel-btn prev" aria-label="이전">◀</button>
+
+              <!-- 캐러셀 창 -->
+              <div class="carousel-window">
+                <div class="carousel-track">
+                  <!-- 카드 1: 클릭 시 모달에서 이미지 크게 보임, 링크 이동 가능 -->
+                  <div
+                    class="card"
+                    data-large="image/video1.jpg"
+                    data-link="https://www.youtube.com/@example1"
+                  >
+                    <img src="image/thumb1.jpg" alt="영상1" />
+                  </div>
+                  <!-- 카드 2 -->
+                  <div
+                    class="card"
+                    data-large="image/video2.jpg"
+                    data-link="https://www.youtube.com/@example2"
+                  >
+                    <img src="image/thumb2.jpg" alt="영상2" />
+                  </div>
+                  <!-- 카드 3 -->
+                  <div
+                    class="card"
+                    data-large="image/video2.jpg"
+                    data-link="https://www.youtube.com/@example2"
+                  >
+                    <img src="image/thumb2.jpg" alt="영상3" />
+                  </div>
+                  <!-- 카드 4 -->
+                  <div
+                    class="card"
+                    data-large="image/video2.jpg"
+                    data-link="https://www.youtube.com/@example2"
+                  >
+                    <img src="image/thumb2.jpg" alt="영상4" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- 우측 이동 버튼 -->
+              <button class="carousel-btn next" aria-label="다음">▶</button>
+            </div>
+          </div>
+
+          <!-- ROW 2: 모션그래픽 -->
+          <div class="project-row">
+            <div class="row-header">
+              <div class="badge">모션</div>
+              <h3>모션그래픽</h3>
+            </div>
+
+            <div
+              class="carousel-row"
+              data-speed="0.5"
+              aria-label="모션그래픽 캐러셀"
+            >
+              <button class="carousel-btn prev" aria-label="이전">◀</button>
+
+              <div class="carousel-window">
+                <div class="carousel-track">
+                  <div
+                    class="card"
+                    data-large="image/motion1.jpg"
+                    data-link="https://example.com/motion1"
+                  >
+                    <img src="image/motion1-thumb.jpg" alt="모션1" />
+                  </div>
+                  <div
+                    class="card"
+                    data-large="image/motion2.jpg"
+                    data-link="https://example.com/motion2"
+                  >
+                    <img src="image/motion2-thumb.jpg" alt="모션2" />
+                  </div>
+                  <div
+                    class="card"
+                    data-large="image/motion2.jpg"
+                    data-link="https://example.com/motion2"
+                  >
+                    <img src="image/motion2-thumb.jpg" alt="모션3" />
+                  </div>
+                  <div
+                    class="card"
+                    data-large="image/motion2.jpg"
+                    data-link="https://example.com/motion2"
+                  >
+                    <img src="image/motion2-thumb.jpg" alt="모션4" />
+                  </div>
+                </div>
+              </div>
+
+              <button class="carousel-btn next" aria-label="다음">▶</button>
+            </div>
+          </div>
+
+          <!-- ROW 3: 포스터 -->
+          <div class="project-row">
+            <div class="row-header">
+              <div class="badge">포스터</div>
+              <h3>포스터 & 카드뉴스</h3>
+            </div>
+
+            <div
+              class="carousel-row"
+              data-speed="0.7"
+              aria-label="포스터 캐러셀"
+            >
+              <button class="carousel-btn prev" aria-label="이전">◀</button>
+
+              <div class="carousel-window">
+                <div class="carousel-track">
+                  <div class="card" data-large="image/1231.jpg">
+                    <h4>카드뉴스 음식1</h4>
+                    <img src="image/1231.jpg" alt="포스터1" />
+                  </div>
+                  <div class="card" data-large="image/1232.jpg">
+                    <h4>카드뉴스 음식2</h4>
+                    <img src="image/1232.jpg" alt="포스터2" />
+                  </div>
+                  <div class="card" data-large="image/1233.jpg">
+                    <h4>카드뉴스 음식3</h4>
+                    <img src="image/1233.jpg" alt="포스터2" />
+                  </div>
+                  <div class="card" data-large="image/1234.jpg">
+                    <h4>카드뉴스 음식4</h4>
+                    <img src="image/1234.jpg" alt="포스터2" />
+                  </div>
+                </div>
+              </div>
+
+              <button class="carousel-btn next" aria-label="다음">▶</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer
+        id="footer"
+        class="panel"
+        data-bg="image/444.png"
+        aria-label="Footer 영역"
+      >
+        <div class="footer">
+          <div class="footer-left">
+            <h4>경력</h4>
+            <p>
+              간단한 경력 또는 소개 Lorem ipsum dolor sit amet, consectetur
+              adipisicing elit. Voluptates nemo, aperiam dolor sapiente, at odit
+              voluptatem optio consectetur, quis ipsum accusamus ab! Error neque
+              sapiente, quia mollitia eius tempora cumque! 간단한 경력 또는 소개
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Voluptates nemo, aperiam dolor sapiente, at odit voluptatem optio
+              consectetur, quis ipsum accusamus ab! Error neque sapiente, quia
+              mollitia eius tempora cumque! 간단한 경력 또는 소개 Lorem ipsum
+              dolor sit amet, consectetur adipisicing elit. Voluptates nemo,
+              aperiam dolor sapiente, at odit voluptatem optio consectetur, quis
+              ipsum accusamus ab! Error neque sapiente, quia mollitia eius
+              tempora cumque!
+            </p>
+          </div>
+          <div class="footer-right">
+            <h4>연락방법</h4>
+            <ul>
+              <li><a href="#" target="_blank" rel="noopener">YouTube</a></li>
+              <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+              <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
+              <li><a href="#" target="_blank" rel="noopener">KakaoTalk</a></li>
+              <li><a href="#" target="_blank" rel="noopener">Google</a></li>
+              <li><a href="#" target="_blank" rel="noopener">Naver</a></li>
+              <li><a href="#" target="_blank" rel="noopener">notion</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- ====================== 5) 모달 ====================== -->
+    <!-- 클릭한 프로젝트 카드 이미지를 크게 보기 위한 전체화면 모달 -->
+    <div id="mediaModal" class="media-modal" aria-hidden="true">
+      <div class="modal-inner">
+        <!-- 모달 닫기 버튼 -->
+        <button id="modalClose" class="modal-close" aria-label="모달 닫기">
+          ✕
+        </button>
+
+        <!-- 링크 이동 버튼: 영상/모션만 표시 -->
+        <a
+          id="openExternal"
+          class="open-external"
+          target="_blank"
+          rel="noopener"
+          >링크 이동</a
+        >
+
+        <!-- 모달 콘텐츠: 이미지 또는 비디오 삽입 -->
+        <div id="modalContent" class="modal-content"></div>
+      </div>
+    </div>
+
+    <!-- ====================== 6) Top 버튼 ====================== -->
+    <!-- 페이지 맨 위로 이동 -->
+    <a id="topBtn" href="#home" aria-label="맨 위로">▲</a>
+
+    <!-- JS 연결 -->
+    <script src="js/portfolio.js" defer></script>
+  </body>
+</html>
